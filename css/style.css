@@ -113,4 +113,8 @@
   .input-group>.form-select {
     width: 100%;
   }
+
+  .timer {
+    transform: translateY(258px);
+  }
 }
