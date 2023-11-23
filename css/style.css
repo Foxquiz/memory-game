@@ -119,7 +119,7 @@
   }
 }
 
-@media (max-width: 460px) {
+@media (max-width: 410px) {
   .timer {
     transform: translateY(258px);
   }
