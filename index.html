@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Игра в пары</title>
+
+  <script defer src="main.js"></script>
+</head>
+
+<body>
+  <header id="gameheader" class="container p-3 header">
+    <h1 class="mb-3">Игра в пары</h1>
+    <span id="timer" class="timer"></span>
+  </header>
+  <section id="gameMenu" class="container game-menu">
+    <div class="d-flex column-gap-3 mb-3 game-options">
+      <div class="input-group">
+        <span class="input-group-text">
+          Количество карточек по вертикали/горизонтали:
+        </span>
+        <input id="input-colCount" type="number" class="form-control" aria-label="columns qt-ty"
+          aria-describedby="inputGroup-sizing-default">
+      </div>
+      <div class="input-group">
+          <label for="selectCardType" class="input-group-text">Коллекция рубашек:</label>
+          <select id="selectCardType" class="form-select" aria-label="Default select example">
+            <option value="numbers" selected>Стандартные</option>
+            <option value="fox">Лисы</option>
+            <option value="cars">Машины</option>
+          </select>
+        </div>
+    </div>
+    <div class="buttons__container container d-flex flex-row justify-content-center mb-3">
+      <button id="startButton" class="btn btn-success">Начать игру</button>
+    </div>
+  </section>
+  <section id="game" class="container mb-3"></section>
+  <div id="gameBottomMenu" class="buttons__container--bottom container d-flex flex-row justify-content-center mb-5">
+    <button id="againButton" type="button" class="btn btn-success">Сыграть ещё</button>
+  </div>
+</body>
+
+<!-- Конец игры. Как только игрок открыл все пары на поле, игра считается завершённой. Под полем с открытыми карточками появляется кнопка «Сыграть ещё раз», при нажатии на которую игра сбрасывается до начального состояния с заново перемешанными карточками. -->
+
+</html>

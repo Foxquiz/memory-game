@@ -1,0 +1,55 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timer {
+  align-self: center;
+  font-size: 30px;
+}
+
+.visually-hidden {
+  /* position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0); */
+  visibility: hidden
+}
+
+.cardGame {
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: gray;
+  font-size: 55px;
+  color: transparent;
+  --bgcolor-openCard: blue;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* cards */
+.card-fox {
+  background-image: url(../img/fox.png);
+  background-size: cover;
+  background-position: center;
+  --bgcolor-openCard: #ff8e00;
+}
+
+.card-cars {
+  background-image: url(../img/car.png);
+  background-size: cover;
+  background-position: center;
+  --bgcolor-openCard: #B00000;
+}
+
+.cardGame--open {
+  color: white;
+  background-image: none;
+  background-color: var(--bgcolor-openCard);
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
