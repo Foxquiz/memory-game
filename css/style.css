@@ -3,14 +3,14 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .timer {
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -ms-grid-row-align: center;
+  align-self: center;
   font-size: 30px;
 }
 
@@ -28,11 +28,11 @@
 
 .cardGame {
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   border-radius: 10px;
   background-color: gray;
   font-size: 55px;
@@ -66,4 +66,51 @@
   -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   -o-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+@media (max-width: 1024px) {
+  .game-options {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-group-text {
+    white-space: wrap;
+  }
+
+  .input-text__card-number {
+    min-width: 50px;
+    width: 100%;
+  }
+
+  .select-text__card-img {
+    min-width: 150px;
+    width: 100%;
+  }
+
+  .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback),
+  .input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3),
+  .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-control,
+  .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-select,
+  .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+    border-radius: var(--bs-border-radius);
+  }
+}
+
+@media (max-width: 560px) {
+  .input-group {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .input-group>.form-control,
+  .input-group>.form-floating,
+  .input-group>.form-select {
+    width: 100%;
+  }
 }
