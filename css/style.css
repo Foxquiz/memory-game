@@ -46,14 +46,14 @@
 
 /* cards */
 .card-fox {
-  background-image: url(../img/fox.png);
+  background-image: url(../img/fox.jpg);
   background-size: cover;
   background-position: center;
   --bgcolor-openCard: #ff8e00;
 }
 
 .card-cars {
-  background-image: url(../img/car.png);
+  background-image: url(../img/car.jpg);
   background-size: cover;
   background-position: center;
   --bgcolor-openCard: #B00000;
