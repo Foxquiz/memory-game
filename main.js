@@ -64,7 +64,7 @@ function render(colCount, cardType) {
 //создание списка для карточек
 function createCardList() {
   let list = document.createElement('ul');
-  list.classList.add('list-group', 'row');
+  list.classList.add('list-group', 'd-flex', 'flex-wrap');
   list.style.cssText = 'list-style: none; flex-direction: row;';
   list.style.gap = '10px';
 
