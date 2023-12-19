@@ -14,16 +14,9 @@
   font-size: 30px;
 }
 
-.visually-hidden {
-  /* position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  clip: rect(0 0 0 0); */
-  visibility: hidden
+.card-list {
+  gap: 10px;
+  list-style: none;
 }
 
 .cardGame {
@@ -33,10 +26,10 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  padding: 10px 0;
   border-radius: 10px;
   background-color: gray;
   font-size: 55px;
-  color: transparent;
   --bgcolor-openCard: blue;
   cursor: pointer;
   -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -44,7 +37,6 @@
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
-/* cards */
 .card-fox {
   background-image: url(../img/fox.jpg);
   background-size: cover;
@@ -69,6 +61,14 @@
 }
 
 @media (max-width: 1024px) {
+  .card-list {
+    gap: 5px;
+  }
+
+  .cardGame {
+    font-size: 50px;
+  }
+
   .game-options {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -101,6 +101,11 @@
 }
 
 @media (max-width: 560px) {
+  .cardGame {
+    border-radius: 5px;
+    font-size: 30px;
+  }
+
   .input-group {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

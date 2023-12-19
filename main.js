@@ -32,12 +32,13 @@ function shuffle(arr, cardQty) {
   }
   return array
 }
+
 //возврат перемешанного массива
 function createShuffledArray(cardQty) {
   return shuffle(createNumbersArray(cardQty), cardQty);
 };
 
-//функция render
+//функция render поля карточек
 function render(colCount, cardType) {
   numbersArray = [];
   guessedCards = [];
@@ -46,10 +47,13 @@ function render(colCount, cardType) {
   let cardList = createCardList();
   gameContainer.append(cardList);
 
-  console.log('start')
+  console.log('start');
+  console.log('array', numbersArray);
+  console.log('shuffled', shuffledArray);
+
   for (i = 0; i < shuffledArray.length; i += 1) {
-    let card = createCard(colCount, i, cardType);
-    card.textContent = shuffledArray[i].toString();
+    let card = createCard(colCount, cardType);
+    card.dataset.content = shuffledArray[i].toString();
     cardList.append(card);
     card.addEventListener('click', checkOpenCards);
   }
@@ -64,23 +68,18 @@ function render(colCount, cardType) {
 //создание списка для карточек
 function createCardList() {
   let list = document.createElement('ul');
-  list.classList.add('list-group', 'd-flex', 'flex-wrap');
-  list.style.cssText = 'list-style: none; flex-direction: row;';
-  list.style.gap = '10px';
-
+  list.classList.add('list-group', 'd-flex', 'flex-wrap', 'flex-row', 'card-list');
   return list;
 }
 
 //создание карточки
-function createCard(colCount, id, cardType) {
+function createCard(colCount, cardType) {
   let card = document.createElement('li');
   card.classList.add('d-flex');
   card.classList.add('cardGame');
   card.classList.add(cardTypeClass(cardType));
   card.style.width = `calc((100% - (10px * (${colCount} - 1))) / ${colCount})`;
   card.style.height = `calc((70vh - (10px * (${colCount} - 1))) / ${colCount})`;
-  card.id = id;
-
   return card;
 }
 
@@ -89,7 +88,6 @@ let closeOpenCardsTimer;
 //проверка кол-ва открытых карточек и разрешение на открытие
 function checkOpenCards(event) {
   const card = event.target;
-
   const isFirstCard = countOpenCards === 0;
   const isSecondCard = countOpenCards === 1;
   if (isFirstCard) {
@@ -98,14 +96,19 @@ function checkOpenCards(event) {
     }
     closeOpenCards();
     card.classList.add('cardGame--open');
-    contentOpenCard1 = card.textContent;
+    card.textContent = card.dataset.content;
+    contentOpenCard1 = card.dataset.content;
+    console.log('contentOpenCard1', contentOpenCard1);
     countOpenCards += 1;
     return;
   }
 
   if (isSecondCard) {
     card.classList.add('cardGame--open');
-    contentOpenCard2 = card.textContent;
+    card.textContent = card.dataset.content;
+    contentOpenCard2 = card.dataset.content;
+    console.log('contentOpenCard2', contentOpenCard2);
+
     if (contentOpenCard1 === contentOpenCard2) {
       guessedCards.push(contentOpenCard1);
     };
@@ -119,8 +122,8 @@ function checkOpenCards(event) {
 }
 //*проверка все ли карты открыты
 function checkAllOpenCards() {
-  let cardGame = document.querySelectorAll('.cardGame');
-  let cardGameOpen = document.querySelectorAll('.cardGame--open');
+  const cardGame = document.querySelectorAll('.cardGame');
+  const cardGameOpen = document.querySelectorAll('.cardGame--open');
   if (cardGame.length === cardGameOpen.length) {
     gameBottomMenu.classList.remove('visually-hidden');
     clearInterval(timerInterval);
@@ -133,8 +136,9 @@ function checkAllOpenCards() {
 function closeOpenCards() {
   allCards = document.querySelectorAll('.cardGame');
   allCards.forEach((card) => {
-    if (!guessedCards.includes(card.textContent)) {
-      card.classList.remove('cardGame--open')
+    if (!guessedCards.includes(card.dataset.content)) {
+      card.classList.remove('cardGame--open');
+      card.textContent = '';
     }
   });
 }
@@ -150,15 +154,23 @@ function cleanContainer() {
 }
 
 const input = document.querySelector('#input-colCount');
-console.log('input', input);
+
+//ограничение кол-ва колонок в зависимости от медиа
+let cardMax;
+function myFunction(x) {
+  cardMax = x.matches ? 10 : 6;
+}
+
 //получение числа колонок
 function getInputValue(inputElement) {
   const value = parseInt(inputElement.value, 10);
   return value;
 }
+
 //валидация
 function validateInput(inputValue) {
-  const inRange = inputValue >= 2 && inputValue <= 10;
+  myFunction(window.matchMedia("(min-width: 576px)"));
+  const inRange = inputValue >= 2 && inputValue <= cardMax;
   const isOdd = inputValue % 2 === 0;
   const isValid = inRange && isOdd;
 
@@ -174,7 +186,6 @@ function cleanGameMenu() {
 startButton.addEventListener('click', function () {
   const inputValue = getInputValue(input);
   const isValid = validateInput(inputValue);
-  console.log('удалили контейнер');
   cleanContainer();
   cleanTimer();
 
@@ -183,7 +194,7 @@ startButton.addEventListener('click', function () {
   if (isValid) {
     render(inputValue, cardType);
   } else {
-    alert('Введите чётное число от 2 до 10');
+    alert(`Введите чётное число от 2 до ${cardMax}`);
     input.value = 4;
     render(4, cardType);
   }
